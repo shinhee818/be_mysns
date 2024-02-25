@@ -1,0 +1,61 @@
+spring:
+  profiles:
+    default: local
+  datasource:
+    url: jdbc:mysql://localhost:3306/mysns?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: Abcd123@
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        highlight_sql: true
+        default_batch_fetch_size: 10
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+upload:
+   image:
+     post: /Users/shinhee/Desktop/images/
+
+logging:
+  level:
+    org.hibernate:
+      SQL: debug
+      type.descriptor.sql: trace
+jwt:
+  secret-key: abcasoekwoewjewewqpejqwpepwoqjepowqjeopwqjejwqopejpqiriopwrioqw
+
+cloud:
+  aws:
+    s3:
+      bucket: mysns-sinhee
+    stack.auto: false
+    region.static: ap-northeast-2
+    credentials:
+      accessKey:
+      secretKey:
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    url: jdbc:h2:mem:~/snsApplication
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
