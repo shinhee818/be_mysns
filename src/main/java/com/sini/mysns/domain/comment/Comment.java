@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @Entity
 @RequiredArgsConstructor
-public class Comment {
+public class Comment  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
