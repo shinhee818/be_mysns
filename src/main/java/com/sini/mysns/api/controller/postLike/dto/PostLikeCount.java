@@ -37,7 +37,6 @@ public class PostLikeCount {
             LocalDateTime postRegisterDate,
             PostCategory postCategory
     ) {
-        System.out.println("SINI CALL ~  ~ ~ ~");
         this.postId = postId;
         this.likeCount = likeCount;
         this.content = content;

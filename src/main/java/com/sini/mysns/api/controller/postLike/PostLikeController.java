@@ -31,7 +31,6 @@ public class PostLikeController {
     {
         Long sini = AuthUtil.currentUserId();
 
-        System.out.println("sini = " + sini);
         return postLikeService.findLikedPostIds(sini);
     }
 

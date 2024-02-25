@@ -33,7 +33,6 @@ public class DataInit {
     @PostConstruct
     public void init()
     {
-        // master 유저 생성
         Member master = memberRepository.save(
                 Member.builder()
                         .age(14)

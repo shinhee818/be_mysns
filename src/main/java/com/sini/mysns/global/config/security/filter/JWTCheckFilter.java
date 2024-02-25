@@ -31,8 +31,6 @@ public class JWTCheckFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException
     {
-        log.info("[START] shouldNotFilter {}", request.getRequestURI());
-
         String [] excludePath = {
                 "/login",
                 "/signup",
@@ -57,7 +55,6 @@ public class JWTCheckFilter extends OncePerRequestFilter {
             FilterChain filterChain
     ) throws ServletException, IOException
     {
-        log.info("[START] doFilterInternal");
         String authHeaderStr = request.getHeader("Authorization");
         try {
             String accessToken = authHeaderStr.substring(7);
@@ -81,7 +78,6 @@ public class JWTCheckFilter extends OncePerRequestFilter {
         }
         catch (Exception e)
         {
-            log.error("JWT Check Error..............");
             Gson gson = new Gson();
             String msg = gson.toJson(Map.of("error", "ERROR_ACCESS_TOKEN"));
             response.setContentType("application/json");

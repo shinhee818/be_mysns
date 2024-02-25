@@ -26,7 +26,6 @@ public class TokenProvider {
 
     public String generateAccessToken(MemberDTO memberDTO)
     {
-        //얼마나 유효한
         Map<String, Object> claims = memberDTO.getClaims();
         return generateToken(claims, 60 * 24 * 365 * 100);
     }
@@ -57,7 +56,7 @@ public class TokenProvider {
             claim = Jwts.parserBuilder()
                     .setSigningKey(jwtSecretKey)
                     .build()
-                    .parseClaimsJws(token) // 파싱 및 검증, 실패 시 에러
+                    .parseClaimsJws(token)
                     .getBody();
 
         }

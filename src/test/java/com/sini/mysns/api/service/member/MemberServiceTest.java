@@ -83,7 +83,6 @@ class MemberServiceTest {
                 .isInstanceOf(RuntimeException.class)
                 .hasMessage("이미 존재하는 이메일");
     }
-    //멤버조회
 
     @DisplayName("멤버 수정")
     @Test
