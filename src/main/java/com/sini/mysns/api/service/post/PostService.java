@@ -1,7 +1,6 @@
 package com.sini.mysns.api.service.post;
 
 import com.sini.mysns.api.controller.post.dto.CreatePostImageRequest;
-import com.sini.mysns.api.controller.post.dto.FindPostResponse;
 import com.sini.mysns.api.service.post.dto.CreatePostServiceRequest;
 import com.sini.mysns.api.service.post.dto.UpdatePostServiceRequest;
 import com.sini.mysns.domain.PostCategory;
@@ -90,23 +89,12 @@ public class PostService {
 
     private List<PostImage> createNewPosts(List<CreatePostImageRequest> createPostImageRequests)
     {
-        List<PostImage> newPostImages = createPostImageRequests.stream()
+        return createPostImageRequests.stream()
                 .map(request -> PostImage.builder()
                         .url(request.url())
                         .postImageOrder(request.postImageOrder())
                         .build())
                 .collect(Collectors.toList());
-
-        return newPostImages;
-
-    }
-
-    @Transactional(readOnly = true)
-    public FindPostResponse findPost(Long postId)
-    {
-        Post post = postRepository.findOnePostById(postId)
-                .orElseThrow(()-> new ApiException(ErrorCode.POST_NOT_FOUND));
-        return FindPostResponse.from(post);
     }
 
     public Long updatePost(UpdatePostServiceRequest request)

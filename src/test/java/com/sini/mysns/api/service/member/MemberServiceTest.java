@@ -1,16 +1,16 @@
 package com.sini.mysns.api.service.member;
 
+import com.sini.mysns.IntegrationTestSupporter;
 import com.sini.mysns.api.controller.member.dto.FindMemberResponse;
-import com.sini.mysns.domain.member.Member;
-import com.sini.mysns.domain.member.MemberRepository;
 import com.sini.mysns.api.service.member.dto.CreateMemberServiceRequest;
 import com.sini.mysns.api.service.member.dto.UpdateMemberServiceRequest;
+import com.sini.mysns.domain.member.Member;
+import com.sini.mysns.domain.member.MemberRepository;
 import jakarta.persistence.EntityManager;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -20,8 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("멤버 서비스 테스트")
 @Transactional
-@SpringBootTest
-class MemberServiceTest {
+class MemberServiceTest extends IntegrationTestSupporter {
 
     @Autowired
     MemberService memberService;

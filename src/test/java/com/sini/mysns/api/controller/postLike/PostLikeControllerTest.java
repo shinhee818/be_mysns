@@ -1,15 +1,14 @@
 package com.sini.mysns.api.controller.postLike;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sini.mysns.ControllerTestSupporter;
 import com.sini.mysns.api.controller.postLike.dto.PostLikeRequest;
 import com.sini.mysns.api.service.like.PostLikeService;
 import com.sini.mysns.domain.PostLike.PostLikeRepository;
-import com.sini.mysns.global.config.security.AuthUtil;
 import com.sini.mysns.global.config.security.filter.JWTCheckFilter;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
-import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -22,7 +21,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
-import static org.mockito.Mockito.mockStatic;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -32,7 +30,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(controllers = PostLikeController.class,
         excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = JWTCheckFilter.class)}
 )
-class PostLikeControllerTest {
+class PostLikeControllerTest extends ControllerTestSupporter {
 
     @MockBean
     PostLikeService postLikeService;
@@ -45,14 +43,6 @@ class PostLikeControllerTest {
 
     @Autowired
     ObjectMapper objectMapper;
-
-    private MockedStatic<AuthUtil> authUtilMockedStatic;
-
-    @BeforeEach
-    public void before()
-    {
-        authUtilMockedStatic = mockStatic(AuthUtil.class);
-    }
 
     @Test
     void countPostLikes() throws Exception
@@ -78,11 +68,8 @@ class PostLikeControllerTest {
     @Test
     void findPostLike() throws Exception
     {
-        //given
-        authUtilMockedStatic.when(AuthUtil::currentUserId).thenReturn(1L);
-
         //when
-        BDDMockito.given(postLikeService.findLikedPostIds(1L)).willReturn(List.of(1L,2L));
+        BDDMockito.given(postLikeService.findLikedPostIds(Mockito.any())).willReturn(List.of(1L,2L));
 
         //then
         mockMvc.perform(MockMvcRequestBuilders.get("/api/like")

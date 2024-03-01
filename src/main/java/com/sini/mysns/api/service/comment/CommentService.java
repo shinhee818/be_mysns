@@ -8,8 +8,10 @@ import com.sini.mysns.domain.member.Member;
 import com.sini.mysns.domain.member.MemberRepository;
 import com.sini.mysns.domain.post.Post;
 import com.sini.mysns.domain.post.PostRepository;
+import com.sini.mysns.global.config.security.AuthUtil;
 import com.sini.mysns.global.exception.ApiException;
 import com.sini.mysns.global.exception.ErrorCode;
+import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +27,7 @@ public class CommentService {
 
     public Long createComment(CreateCommentServiceRequest request)
     {
-        Member member = memberRepository.findById(request.memberId())
+        Member member = memberRepository.findByEmail(AuthUtil.currentUserEmail())
                 .orElseThrow(()-> new ApiException(ErrorCode.MEMBER_NOT_FOUND));
 
         Post post = postRepository.findById(request.postId())
@@ -47,23 +49,6 @@ public class CommentService {
 
         comment.changeContent(request.comment());
         return comment.getCommentId();
-    }
-
-    private static void validateUpdateComment(long postId, long memberId, Comment comment)
-    {
-        Post post = comment.getPost();
-
-        if (post.getPostId() == postId)
-        {
-            throw new IllegalStateException("요청과 다른 Post ID");
-        }
-
-        Member member = comment.getMember();
-
-        if (member.getMemberId() == memberId)
-        {
-            throw new IllegalStateException("작성자만 수정할 수 있다.");
-        }
     }
 
     public void deleteComment(Long commentId, Long memberId)

@@ -8,7 +8,7 @@ import org.springframework.test.context.jdbc.Sql;
 
 @Sql("/member.sql")
 @WithUserDetails(
-        value = "master@master.com",
+        value = GlobalTestHelper.MASTER_EMAIL,
         setupBefore = TestExecutionEvent.TEST_EXECUTION,
         userDetailsServiceBeanName = "customUserDetailsService"
 )

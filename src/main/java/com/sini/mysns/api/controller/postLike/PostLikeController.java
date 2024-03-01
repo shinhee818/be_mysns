@@ -29,9 +29,7 @@ public class PostLikeController {
     @GetMapping
     public List<Long> findPostLike()
     {
-        Long sini = AuthUtil.currentUserId();
-
-        return postLikeService.findLikedPostIds(sini);
+        return postLikeService.findLikedPostIds(AuthUtil.currentUserId());
     }
 
     @GetMapping("/{postId}")

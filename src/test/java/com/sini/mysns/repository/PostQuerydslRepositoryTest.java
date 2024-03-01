@@ -16,7 +16,6 @@ import com.sini.mysns.domain.tag.TagRepository;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,11 +44,8 @@ class PostQuerydslRepositoryTest extends IntegrationTestSupporter {
     @Test
     void findFetchPostById() {
         //given
-        Member member = memberRepository.save(Member.builder()
-                .memberName("ag")
-                .age(14)
-                .email("ws@ne.com")
-                .build());
+        Member member = memberRepository.findByEmail("master@master.com").orElseThrow();
+
         Tag tag1 = tagRepository.save(Tag.builder()
                 .tagContent("tag1")
                 .build());
@@ -91,11 +87,7 @@ class PostQuerydslRepositoryTest extends IntegrationTestSupporter {
 
     @Test
     void findPosts() {
-        Member member = memberRepository.save(Member.builder()
-                .memberName("ag")
-                .age(14)
-                .email("ws@ne.com")
-                .build());
+        Member member = memberRepository.findByEmail("master@master.com").orElseThrow();
 
         Tag tag1 = tagRepository.save(Tag.builder()
                 .tagContent("tag1")
@@ -140,8 +132,7 @@ class PostQuerydslRepositoryTest extends IntegrationTestSupporter {
         //when
         FindPostsResponse result = postQuerydslRepository.findPosts(cond);
         //then
-        System.out.println(result.findPosts());
-        assertThat(result.findPosts()).hasSize(4);
+        assertThat(result.findPosts()).hasSize(1);
         assertThat(result.findPosts().get(0).content()).isEqualTo("content");
     }
 }

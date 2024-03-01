@@ -33,7 +33,6 @@ public class S3PostImageUploadServiceImpl implements PostImageUploadService {
             metadata.setContentType(multipartFile.getContentType());
             metadata.setContentLength(multipartFile.getSize());
             PutObjectResult putObjectResult = amazonS3Client.putObject(bucket, UUID.randomUUID().toString(), multipartFile.getInputStream(), metadata);
-            System.out.println(putObjectResult.getMetadata());
             return url;
         } catch (IOException e) {
             e.printStackTrace();

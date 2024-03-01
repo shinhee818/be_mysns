@@ -6,6 +6,7 @@ import com.sini.mysns.api.controller.post.dto.FindPostSortType;
 import com.sini.mysns.api.controller.post.dto.FindPostsResponse;
 import com.sini.mysns.domain.PostCategory;
 import com.sini.mysns.domain.post.Post;
+import com.sini.mysns.global.config.security.AuthUtil;
 import com.sini.mysns.global.exception.ApiException;
 import com.sini.mysns.global.exception.ErrorCode;
 import com.sini.mysns.repository.PostQuerydslRepository;

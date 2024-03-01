@@ -90,7 +90,8 @@ class MemberControllerTest {
 
     @DisplayName("email 형식 예외")
     @Test
-    void createMemberInvalidEmail() throws Exception {
+    void createMemberInvalidEmail() throws Exception
+    {
         MemberRequest request = new MemberRequest(
                 "sini",
                 "abc.naver.com",
@@ -113,7 +114,8 @@ class MemberControllerTest {
 
     @DisplayName("삭제 예외")
     @Test
-    void deleteMemberInvalid() throws Exception {
+    void deleteMemberInvalid() throws Exception
+    {
         MemberRequest request = new MemberRequest(
                 "sini",
                 "abc@naver.com",

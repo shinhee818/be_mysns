@@ -1,5 +1,6 @@
 package com.sini.mysns.api.service.comment;
 
+import com.sini.mysns.IntegrationTestSupporter;
 import com.sini.mysns.api.service.comment.dto.CreateCommentServiceRequest;
 import com.sini.mysns.api.service.comment.dto.UpdateCommentServiceRequest;
 import com.sini.mysns.domain.comment.Comment;
@@ -8,20 +9,19 @@ import com.sini.mysns.domain.member.Member;
 import com.sini.mysns.domain.member.MemberRepository;
 import com.sini.mysns.domain.post.Post;
 import com.sini.mysns.domain.post.PostRepository;
+import com.sini.mysns.global.config.security.AuthUtil;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
 @Transactional
-class CommentServiceTest {
+class CommentServiceTest extends IntegrationTestSupporter {
 
     @Autowired
     CommentService commentService;
@@ -42,14 +42,8 @@ class CommentServiceTest {
     @Test
     void createComment()
     {
-        Member member =  memberRepository.save(
-                Member.builder()
-                        .memberName("master1")
-                        .email("sini0818@naver.com")
-                        .age(10)
-                        .url("tlsgml@gmail.com")
-                        .build()
-        );
+        Member member =  memberRepository.findByEmail(AuthUtil.currentUserEmail())
+                .orElseThrow();
 
         Post post = postRepository.save(
                 Post.builder()
@@ -77,15 +71,10 @@ class CommentServiceTest {
 
     @DisplayName("댓글 수정")
     @Test
-    void updateComment() {
-        Member member =  memberRepository.save(
-                Member.builder()
-                        .memberName("master1")
-                        .email("sini0818@naver.com")
-                        .age(10)
-                        .url("tlsgml@gmail.com")
-                        .build()
-        );
+    void updateComment()
+    {
+        Member member =  memberRepository.findByEmail(AuthUtil.currentUserEmail())
+                .orElseThrow();
 
         Post post = postRepository.save(
                 Post.builder()
@@ -130,7 +119,7 @@ class CommentServiceTest {
                         .memberName("master1")
                         .email("sini0818@naver.com")
                         .age(10)
-                        .url("tlsgml@gmail.com")
+                        .url("tlsgml2@gmail.com")
                         .build()
         );
 

@@ -2,6 +2,7 @@ package com.sini.mysns.api.controller.post;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Sets;
+import com.sini.mysns.ControllerTestSupporter;
 import com.sini.mysns.api.controller.post.dto.FindPostsResponse;
 import com.sini.mysns.domain.PostCategory;
 import com.sini.mysns.domain.member.Member;
@@ -37,7 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(controllers = PostSearchController.class,
         excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = JWTCheckFilter.class)}
 )
-class PostSearchControllerTest {
+class PostSearchControllerTest extends ControllerTestSupporter {
 
     @MockBean
     PostRepository postRepository;

@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 @Transactional
 @SpringBootTest
 class PostLikeRepositoryTest {
+
     @Autowired
     PostLikeRepository postLikeRepository;
 
@@ -65,6 +66,5 @@ class PostLikeRepositoryTest {
         Assertions.assertThat(postLikes.stream()
                 .map(postLike -> postLike.getPost().getContent())
                 .collect(Collectors.toList())).containsExactly("content");
-
     }
 }

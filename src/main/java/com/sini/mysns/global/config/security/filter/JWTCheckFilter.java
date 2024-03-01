@@ -63,6 +63,7 @@ public class JWTCheckFilter extends OncePerRequestFilter {
             String password = (String) claims.get("password");
 
             UserDetails userDetails = customUserDetailsService.loadUserByUsername(email);
+
             if (userDetails != null)
             {
                 UsernamePasswordAuthenticationToken authenticationToken

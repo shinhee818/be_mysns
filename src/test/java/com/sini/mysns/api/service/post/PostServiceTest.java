@@ -28,6 +28,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Transactional
 class PostServiceTest extends IntegrationTestSupporter {
+
     @Autowired
     PostService postService;
 
@@ -71,7 +72,6 @@ class PostServiceTest extends IntegrationTestSupporter {
                 ),
                 BACKEND
         );
-
         //when
         Long postId = postService.createPost(request);
 
