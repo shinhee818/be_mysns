@@ -4,29 +4,33 @@ import com.sini.mysns.api.controller.post.dto.FindPostCond;
 import com.sini.mysns.api.controller.post.dto.FindPostResponse;
 import com.sini.mysns.api.controller.post.dto.FindPostSortType;
 import com.sini.mysns.api.controller.post.dto.FindPostsResponse;
+import com.sini.mysns.api.service.redis.ViewCountService;
 import com.sini.mysns.domain.PostCategory;
 import com.sini.mysns.domain.post.Post;
-import com.sini.mysns.global.config.security.AuthUtil;
 import com.sini.mysns.global.exception.ApiException;
 import com.sini.mysns.global.exception.ErrorCode;
 import com.sini.mysns.repository.PostQuerydslRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("*")
 @RequiredArgsConstructor
 @RequestMapping("/api/post/search")
 @RestController
+@Transactional(readOnly = true)
 public class PostSearchController {
 
     private final PostQuerydslRepository postQuerydslRepository;
 
+    @Transactional
     @GetMapping("/{postId}")
     public FindPostResponse findPost(@PathVariable("postId") Long postId)
     {
         Post post = postQuerydslRepository.findFetchPostById(postId)
                 .orElseThrow(()-> new ApiException(ErrorCode.POST_NOT_FOUND));
+
         return FindPostResponse.from(post);
     }
 

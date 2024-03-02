@@ -6,6 +6,7 @@ import com.sini.mysns.api.service.member.dto.CreateMemberServiceRequest;
 import com.sini.mysns.api.service.member.dto.UpdateMemberServiceRequest;
 import com.sini.mysns.domain.member.Member;
 import com.sini.mysns.domain.member.MemberRepository;
+import com.sini.mysns.global.config.security.AuthUtil;
 import jakarta.persistence.EntityManager;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -53,8 +54,8 @@ class MemberServiceTest extends IntegrationTestSupporter {
         assertThat(memberId).isNotNull();
         List<Member> members = memberRepository.findAll();
         assertThat(members).hasSize(2);
-        assertThat(members.get(0).getMemberName()).isEqualTo("sini");
-        assertThat(members.get(0).getEmail()).isEqualTo("sini@sini.com");
+        assertThat(members.get(0).getMemberName()).isEqualTo("master");
+        assertThat(members.get(0).getEmail()).isEqualTo("sini@m.com");
     }
 
     @DisplayName("이메일은 중복될 수 없다.")
@@ -88,15 +89,7 @@ class MemberServiceTest extends IntegrationTestSupporter {
     void memberUpdate()
     {
         // given
-        Member member = memberRepository.save(
-                Member.builder()
-                        .memberName("master")
-                        .email("sini@naver.com")
-                        .age(10)
-                        .url("tlsgml@gmail.com")
-                        .password("12345")
-                        .build()
-        );
+        Member member = memberRepository.findByEmail(AuthUtil.currentUserEmail()).orElseThrow();
 
         entityManager.flush();
         entityManager.clear();
@@ -113,8 +106,8 @@ class MemberServiceTest extends IntegrationTestSupporter {
         // then
         assertThat(memberId).isNotNull();
         List<Member> members = memberRepository.findAll();
-        assertThat(members).hasSize(2);
-        assertThat(members.get(1))
+        assertThat(members).hasSize(1);
+        assertThat(members.get(0))
                 .extracting(Member::getMemberName, Member::getAge)
                 .contains("updated", 22);
     }
