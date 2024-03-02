@@ -36,7 +36,7 @@ class MemberControllerTest {
     @Autowired
     ObjectMapper objectMapper;
 
-    @DisplayName("")
+    @DisplayName("최소 나이 예외 테스트")
     @Test
     void createMemberInvalidMinAge() throws Exception
     {
@@ -62,7 +62,7 @@ class MemberControllerTest {
                     .andExpect(jsonPath("$.status").value("400"));
     }
 
-    @DisplayName("")
+    @DisplayName("최대 나이 예외 테스트")
     @Test
     void createMemberInvalidMaxdAge() throws Exception
     {

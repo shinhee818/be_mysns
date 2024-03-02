@@ -14,6 +14,7 @@ import com.sini.mysns.domain.post.PostTag;
 import com.sini.mysns.domain.tag.Tag;
 import com.sini.mysns.domain.tag.TagRepository;
 import jakarta.persistence.EntityManager;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -42,6 +43,7 @@ class PostQuerydslRepositoryTest extends IntegrationTestSupporter {
     MemberRepository memberRepository;
 
     @Test
+    @DisplayName("특정 포스트 찾기 테스트")
     void findFetchPostById() {
         //given
         Member member = memberRepository.findByEmail("master@master.com").orElseThrow();
@@ -86,6 +88,7 @@ class PostQuerydslRepositoryTest extends IntegrationTestSupporter {
     }
 
     @Test
+    @DisplayName("메인 포스트 테스트")
     void findPosts() {
         Member member = memberRepository.findByEmail("master@master.com").orElseThrow();
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sini.mysns.domain.member.Member;
 import com.sini.mysns.domain.member.MemberRepository;
 import com.sini.mysns.global.config.security.filter.JWTCheckFilter;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
@@ -41,6 +42,7 @@ public class MemberSearchControllerTest {
     ObjectMapper objectMapper;
 
     @Test
+    @DisplayName("해당 멤버 찾기 테스트")
     void findMember() throws Exception
     {
         BDDMockito.given(

@@ -8,6 +8,7 @@ import com.sini.mysns.domain.tag.Tag;
 import com.sini.mysns.domain.tag.TagRepository;
 import com.sini.mysns.repository.PostQuerydslRepository;
 import jakarta.persistence.EntityManager;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -37,6 +38,7 @@ class PostRepositoryTest {
     MemberRepository memberRepository;
 
     @Test
+    @DisplayName("포스트 찾기 테스트")
     void findPost()
     {
         // given

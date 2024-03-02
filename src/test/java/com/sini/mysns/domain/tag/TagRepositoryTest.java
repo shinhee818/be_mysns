@@ -1,6 +1,7 @@
 package com.sini.mysns.domain.tag;
 
 import jakarta.persistence.EntityManager;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -21,6 +22,7 @@ class TagRepositoryTest {
     EntityManager entityManager;
 
     @Test
+    @DisplayName("태그 찾기 테스트")
     void findAll()
     {
         // given

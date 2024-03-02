@@ -47,7 +47,7 @@ class PostServiceTest extends IntegrationTestSupporter {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @DisplayName("포스트 생성")
+    @DisplayName("포스트 생성 테스트")
     @Test
     void createPost()
     {
@@ -88,7 +88,7 @@ class PostServiceTest extends IntegrationTestSupporter {
                 .contains("sini1", "sini2", "sini3");
     }
 
-    @DisplayName("포스트 수정")
+    @DisplayName("포스트 수정 테스트")
     @Test
     void updatePost() {
         //given
@@ -123,7 +123,7 @@ class PostServiceTest extends IntegrationTestSupporter {
                 .contains("updatedTitle","updatedContent");
     }
 
-    @DisplayName("포스트 삭제")
+    @DisplayName("포스트 삭제 테스트")
     @Test
     void deletePost()
     {

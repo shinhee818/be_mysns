@@ -10,6 +10,7 @@ import com.sini.mysns.domain.member.MemberRepository;
 import com.sini.mysns.domain.post.Post;
 import com.sini.mysns.domain.post.PostRepository;
 import com.sini.mysns.global.config.security.AuthUtil;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +34,7 @@ class PostLikeServiceTest extends IntegrationTestSupporter {
     PostLikeService postLikeService;
 
     @Test
+    @DisplayName("좋아요 테스트")
     void like() {
         //given
         Member member = memberRepository.findByEmail(AuthUtil.currentUserEmail()).orElseThrow();

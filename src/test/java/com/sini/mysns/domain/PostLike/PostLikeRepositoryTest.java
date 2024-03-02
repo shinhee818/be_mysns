@@ -9,6 +9,7 @@ import com.sini.mysns.domain.post.Post;
 import com.sini.mysns.domain.post.PostRepository;
 import jakarta.persistence.EntityManager;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -37,6 +38,7 @@ class PostLikeRepositoryTest {
     EntityManager entityManager;
 
     @Test
+    @DisplayName("특정 멤버 포스트 찾기 테스트")
     void findByMember() {
         Member member = memberRepository.save(
                 Member.builder()

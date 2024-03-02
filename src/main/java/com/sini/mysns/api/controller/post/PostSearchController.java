@@ -7,9 +7,13 @@ import com.sini.mysns.api.controller.post.dto.FindPostsResponse;
 import com.sini.mysns.api.service.redis.ViewCountService;
 import com.sini.mysns.domain.PostCategory;
 import com.sini.mysns.domain.post.Post;
+import com.sini.mysns.domain.post.PostRepository;
 import com.sini.mysns.global.exception.ApiException;
 import com.sini.mysns.global.exception.ErrorCode;
 import com.sini.mysns.repository.PostQuerydslRepository;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,16 +27,24 @@ import org.springframework.web.bind.annotation.*;
 public class PostSearchController {
 
     private final PostQuerydslRepository postQuerydslRepository;
+    private final PostRepository postRepository;
+    private final ViewCountService viewCountService;
 
     @Transactional
     @GetMapping("/{postId}")
-    public FindPostResponse findPost(@PathVariable("postId") Long postId)
+    public FindPostResponse findPost(@PathVariable("postId") Long postId,
+                                     HttpServletRequest request,
+                                     HttpServletResponse response)
     {
         Post post = postQuerydslRepository.findFetchPostById(postId)
                 .orElseThrow(()-> new ApiException(ErrorCode.POST_NOT_FOUND));
 
+
+
         return FindPostResponse.from(post);
     }
+
+
 
     @GetMapping
     public FindPostsResponse findPosts(

@@ -38,7 +38,7 @@ class CommentServiceTest extends IntegrationTestSupporter {
     @Autowired
     EntityManager entityManager;
 
-    @DisplayName("댓글 생성")
+    @DisplayName("댓글 생성 테스트")
     @Test
     void createComment()
     {
@@ -69,7 +69,7 @@ class CommentServiceTest extends IntegrationTestSupporter {
 
     }
 
-    @DisplayName("댓글 수정")
+    @DisplayName("댓글 수정 테스트")
     @Test
     void updateComment()
     {
@@ -110,7 +110,7 @@ class CommentServiceTest extends IntegrationTestSupporter {
                 .isEqualTo("comment");
     }
 
-    @DisplayName("댓글 삭제")
+    @DisplayName("댓글 삭제 테스트")
     @Test
     void deleteComment()
     {

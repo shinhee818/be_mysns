@@ -13,6 +13,7 @@ import com.sini.mysns.domain.post.PostTag;
 import com.sini.mysns.domain.tag.Tag;
 import com.sini.mysns.global.config.security.filter.JWTCheckFilter;
 import com.sini.mysns.repository.PostQuerydslRepository;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
@@ -53,6 +54,7 @@ class PostSearchControllerTest extends ControllerTestSupporter {
     ObjectMapper objectMapper;
 
     @Test
+    @DisplayName("특정 포스트 찾기 테스트")
     void findPost() throws Exception
     {
         Set<PostTag> postTags = Sets.newHashSet(
@@ -110,6 +112,7 @@ class PostSearchControllerTest extends ControllerTestSupporter {
     }
 
     @Test
+    @DisplayName("메인 포스트 테스트")
     void findPosts() throws Exception
     {
         Set<PostTag> postTags = Sets.newHashSet(

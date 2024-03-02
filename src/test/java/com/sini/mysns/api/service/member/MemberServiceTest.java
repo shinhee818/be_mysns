@@ -84,7 +84,7 @@ class MemberServiceTest extends IntegrationTestSupporter {
                 .hasMessage("이미 존재하는 이메일");
     }
 
-    @DisplayName("멤버 수정")
+    @DisplayName("멤버 수정 테스트")
     @Test
     void memberUpdate()
     {
@@ -112,7 +112,7 @@ class MemberServiceTest extends IntegrationTestSupporter {
                 .contains("updated", 22);
     }
 
-    @DisplayName("멤버 삭제")
+    @DisplayName("멤버 삭제 테스트")
     @Test
     void memberDelete()
     {
@@ -138,6 +138,7 @@ class MemberServiceTest extends IntegrationTestSupporter {
     }
 
     @Test
+    @DisplayName("멤버 찾기 테스트")
     void findMember()
     {
         //given

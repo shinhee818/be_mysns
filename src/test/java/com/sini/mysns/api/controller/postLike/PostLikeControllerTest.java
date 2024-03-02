@@ -6,6 +6,7 @@ import com.sini.mysns.api.controller.postLike.dto.PostLikeRequest;
 import com.sini.mysns.api.service.like.PostLikeService;
 import com.sini.mysns.domain.PostLike.PostLikeRepository;
 import com.sini.mysns.global.config.security.filter.JWTCheckFilter;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
@@ -45,6 +46,7 @@ class PostLikeControllerTest extends ControllerTestSupporter {
     ObjectMapper objectMapper;
 
     @Test
+    @DisplayName("좋아요 수 테스트")
     void countPostLikes() throws Exception
     {
         //given
@@ -66,6 +68,7 @@ class PostLikeControllerTest extends ControllerTestSupporter {
     }
 
     @Test
+    @DisplayName("특정 포스트 좋아요 개수 테스트")
     void findPostLike() throws Exception
     {
         //when

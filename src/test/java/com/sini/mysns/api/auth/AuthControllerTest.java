@@ -1,10 +1,10 @@
 package com.sini.mysns.api.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sini.mysns.api.auth.dto.AuthLoginSuccessRequest;
 import com.sini.mysns.api.service.member.MemberService;
 import com.sini.mysns.api.service.member.dto.CreateMemberServiceRequest;
 import com.sini.mysns.global.config.security.filter.JWTCheckFilter;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -35,6 +35,7 @@ class AuthControllerTest {
     ObjectMapper objectMapper;
 
     @Test
+    @DisplayName("회원가입 테스트")
     void join() throws Exception{
         CreateMemberServiceRequest request = new CreateMemberServiceRequest(
                 "name",
