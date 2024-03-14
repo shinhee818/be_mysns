@@ -39,12 +39,40 @@ public class PostSearchController {
         Post post = postQuerydslRepository.findFetchPostById(postId)
                 .orElseThrow(()-> new ApiException(ErrorCode.POST_NOT_FOUND));
 
-
+        viewCountUp(postId, request, response);
 
         return FindPostResponse.from(post);
     }
 
+    private void viewCountUp(Long id, HttpServletRequest req, HttpServletResponse res)
+    {
+        Cookie oldCookie = null;
 
+        Cookie[] cookies = req.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("postView")) {
+                    oldCookie = cookie;
+                }
+            }
+        }
+
+        if (oldCookie != null) {
+            if (!oldCookie.getValue().contains("[" + id.toString() + "]")) {
+                viewCountService.incrementViewCount(id);
+                oldCookie.setValue(oldCookie.getValue() + "_[" + id + "]");
+                oldCookie.setPath("/");
+                oldCookie.setMaxAge(60 * 60 * 24);
+                res.addCookie(oldCookie);
+            }
+        } else {
+            viewCountService.incrementViewCount(id);
+            Cookie newCookie = new Cookie("postView","[" + id + "]");
+            newCookie.setPath("/");
+            newCookie.setMaxAge(60 * 60 * 24);
+            res.addCookie(newCookie);
+        }
+    }
 
     @GetMapping
     public FindPostsResponse findPosts(

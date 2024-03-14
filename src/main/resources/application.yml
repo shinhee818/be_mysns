@@ -16,7 +16,7 @@ spring:
     properties:
       hibernate:
         highlight_sql: true
-        default_batch_fetch_size: 10
+
         format_sql: true
         dialect: org.hibernate.dialect.MySQLDialect
 upload:
@@ -25,9 +25,8 @@ upload:
 
 logging:
   level:
-    org.hibernate:
-      SQL: debug
-      type.descriptor.sql: trace
+    org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql: trace
 jwt:
   secret-key: abcasoekwoewjewewqpejqwpepwoqjepowqjeopwqjejwqopejpqiriopwrioqw
 
