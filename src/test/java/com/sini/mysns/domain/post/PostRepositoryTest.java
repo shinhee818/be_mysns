@@ -54,6 +54,7 @@ class PostRepositoryTest {
                 .tagContent("tag2")
                 .build());
         tagRepository.saveAll(List.of(tag1, tag2));
+
         PostTag postTag1 = PostTag.builder()
                 .tag(tag1)
                 .build();
@@ -61,6 +62,7 @@ class PostRepositoryTest {
         PostTag postTag2 = PostTag.builder()
                 .tag(tag2)
                 .build();
+
         Post post = postRepository.save(Post.builder()
                 .title("title")
                 .content("content")

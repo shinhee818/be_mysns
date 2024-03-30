@@ -1,4 +1,4 @@
-package com.sini.mysns.domain.PostLike;
+package com.sini.mysns.domain.postlike;
 
 import com.sini.mysns.domain.member.Member;
 import com.sini.mysns.domain.post.Post;

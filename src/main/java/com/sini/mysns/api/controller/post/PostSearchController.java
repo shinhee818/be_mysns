@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,6 +43,12 @@ public class PostSearchController {
         viewCountUp(postId, request, response);
 
         return FindPostResponse.from(post);
+    }
+
+    @GetMapping("/view-count/{postId}")
+    public ResponseEntity<Long> getViewCount(@PathVariable Long postId) {
+        Long viewCount = viewCountService.getViewCount(postId);
+        return ResponseEntity.ok(viewCount);
     }
 
     private void viewCountUp(Long id, HttpServletRequest req, HttpServletResponse res)

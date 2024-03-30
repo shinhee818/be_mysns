@@ -14,4 +14,10 @@ public class ViewCountService {
         redisTemplate.opsForZSet()
                 .incrementScore("view-count", String.valueOf(postId), 1);
     }
+
+    public Long getViewCount(Long postId) {
+        Double score = redisTemplate.opsForZSet().score("view-count", String.valueOf(postId));
+        return score != null ? score.longValue() : 0L;
+    }
+
 }

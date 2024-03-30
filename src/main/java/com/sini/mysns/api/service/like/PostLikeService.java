@@ -1,8 +1,8 @@
 package com.sini.mysns.api.service.like;
 
 import com.sini.mysns.api.service.like.dto.PostLikeServiceRequest;
-import com.sini.mysns.domain.PostLike.PostLike;
-import com.sini.mysns.domain.PostLike.PostLikeRepository;
+import com.sini.mysns.domain.postlike.PostLike;
+import com.sini.mysns.domain.postlike.PostLikeRepository;
 import com.sini.mysns.domain.member.Member;
 import com.sini.mysns.domain.member.MemberRepository;
 import com.sini.mysns.domain.post.Post;

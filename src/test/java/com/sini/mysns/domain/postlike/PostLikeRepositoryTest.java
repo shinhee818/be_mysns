@@ -1,4 +1,4 @@
-package com.sini.mysns.domain.PostLike;
+package com.sini.mysns.domain.postlike;
 
 import com.sini.mysns.api.service.like.PostLikeService;
 import com.sini.mysns.api.service.like.dto.PostLikeServiceRequest;

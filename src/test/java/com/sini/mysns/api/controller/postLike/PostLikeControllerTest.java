@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sini.mysns.ControllerTestSupporter;
 import com.sini.mysns.api.controller.postLike.dto.PostLikeRequest;
 import com.sini.mysns.api.service.like.PostLikeService;
-import com.sini.mysns.domain.PostLike.PostLikeRepository;
+import com.sini.mysns.domain.postlike.PostLikeRepository;
 import com.sini.mysns.global.config.security.filter.JWTCheckFilter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

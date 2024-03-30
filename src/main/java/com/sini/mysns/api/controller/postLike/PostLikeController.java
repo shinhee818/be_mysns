@@ -2,7 +2,7 @@ package com.sini.mysns.api.controller.postLike;
 
 import com.sini.mysns.api.controller.postLike.dto.PostLikeRequest;
 import com.sini.mysns.api.service.like.PostLikeService;
-import com.sini.mysns.domain.PostLike.PostLikeRepository;
+import com.sini.mysns.domain.postlike.PostLikeRepository;
 import com.sini.mysns.global.config.security.AuthUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

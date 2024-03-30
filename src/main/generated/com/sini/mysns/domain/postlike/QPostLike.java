@@ -1,4 +1,4 @@
-package com.sini.mysns.domain.PostLike;
+package com.sini.mysns.domain.postlike;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
